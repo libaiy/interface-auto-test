@@ -3,14 +3,11 @@ import utils.htmlTestRunner as HTMLTestRunner
 from utils import getPathInfo
 import unittest
 from utils import operateConfig
-#from utils.configEmail import send_email
 from utils import logger
 
-#send_mail = send_email()
 path = getPathInfo.get_Path()
 report_path = os.path.join(path, 'result')
 config_path = os.path.join(path, 'config')
-on_off = operateConfig.OperateConfig().get_email('on_off')
 log = logger.logger
 
 class AllTest:
@@ -94,11 +91,7 @@ class AllTest:
             log.info("******************************TEST END*****************************")
             print("*********TEST END*********")
             fp.close()
-        #判断邮件发送的开关
-        #if on_off == 'on':
-        #    send_mail.outlook()
-        #else:
-        #    print("邮件发送开关配置关闭，请打开开关后可正常自动发送测试报告")
+
 
 if __name__ == '__main__':
     AllTest().run()

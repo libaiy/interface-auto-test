@@ -15,10 +15,6 @@ class OperateConfig():
         value = config.get('HTTP', name)
         return value
 
-    def get_email(self, name):
-        value = config.get('EMAIL', name)
-        return value
-
     def get_testintername(self, name):
         value = config.get('TestInterName', name)
         return value
