@@ -85,9 +85,13 @@ class testUserLogin(unittest.TestCase):
             phone_num = result.get('phone_num')
             user_token = result.get('token')
             uid = result.get('uid')
-            operateconfig.set_section("User", "phone_num", phone_num)
-            operateconfig.set_section("User", "user_token", user_token)
-            operateconfig.set_section("User", "uid", str(uid))
+            user_dict = {
+                "phone_num" : phone_num,
+                "user_token" : user_token,
+                "uid" : str(uid)
+            }
+            for k, v in user_dict.items():
+                operateconfig.set_section("User", k, v)
         if self.case_name == u'密码错误':# 同上
             # 判断响应码
             self.assertEqual(rev_code, self.code)

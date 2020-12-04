@@ -29,6 +29,10 @@ class OperateConfig():
         value = self.config.get('User', name)
         return value
 
+    def get_vm(self, name):
+        value = self.config.get('VM', name)
+        return value
+
     def set_section(self, section, option, value):
         modify_flag = True  # 标志是否修改配置文件
         # 判断section是否存在
