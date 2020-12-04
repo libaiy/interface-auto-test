@@ -11,7 +11,6 @@ from utils import logger
 
 url = getUrlParams.GetUrlParams().get_Url()# 调用我们的geturlParams获取我们拼接的URL
 login_xls = readExcel.ReadExcel().get_xls('userCase.xlsx', 'vm')
-operateconfig = operateConfig.OperateConfig("user.ini")
 log = logger.logger
 
 @paramunittest.parametrized(*login_xls)
@@ -60,6 +59,7 @@ class testVMInfo(unittest.TestCase):
         log.info("\t\t测试接口：%s" % self.path)
         log.info("\t\t测试数据：%s" % self.query)
         web_url = url + self.path
+        operateconfig = operateConfig.OperateConfig("user.ini")
         uid = operateconfig.get_user("uid")
         token = operateconfig.get_user("user_token")
         header = {'Content-Type': 'application/json', 'X-CHAOS-TOKEN': token}
@@ -87,13 +87,20 @@ class testVMInfo(unittest.TestCase):
             # ws_token、vms
             ws_token = result.get('ws_token')
             vms_info = result.get('vms')
+            new_vm_list = []
+            need_vmoption = ["vm_id", "display_id", "is_owner"]
+            for vm_dict in vms_info:
+                new_vm_dict = {}
+                for k, v in vm_dict.items():
+                    if k in need_vmoption:
+                        new_vm_dict[k] = v
+                new_vm_list.append(new_vm_dict)
             vm_dict = {
                 "ws_token" : ws_token,
-                "vms" : str(vms_info)
+                "vms" : str(new_vm_list)
             }
             for k, v in vm_dict.items():
                 operateconfig.set_section("VM", k, v)
-
         if self.case_name == u'默认群组':# 同上
             # 判断响应码
             self.assertEqual(rev_code, self.code)

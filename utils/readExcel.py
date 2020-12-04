@@ -29,6 +29,6 @@ class ReadExcel():
 
 
 if __name__ == '__main__':#我们执行该文件测试一下是否可以正确获取Excel中的值
-    print(readExcel().get_xls('userCase.xlsx', 'login'))
-    print(readExcel().get_xls('userCase.xlsx', 'login')[0][1])
-    print(readExcel().get_xls('userCase.xlsx', 'login')[1][2])
+    print(ReadExcel().get_xls('userCase.xlsx', 'login'))
+    print(ReadExcel().get_xls('userCase.xlsx', 'login')[0][1])
+    print(ReadExcel().get_xls('userCase.xlsx', 'login')[1][2])

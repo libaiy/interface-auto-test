@@ -11,11 +11,12 @@ from utils import logger
 
 url = getUrlParams.GetUrlParams().get_Url()# 调用我们的geturlParams获取我们拼接的URL
 login_xls = readExcel.ReadExcel().get_xls('userCase.xlsx', 'login')
-operateconfig = operateConfig.OperateConfig("user.ini")
 log = logger.logger
 
 @paramunittest.parametrized(*login_xls)
 class testUserLogin(unittest.TestCase):
+
+
     def setParameters(self, case_num, case_name, path, query, method, code, msg):
         """
         set params
@@ -90,6 +91,7 @@ class testUserLogin(unittest.TestCase):
                 "user_token" : user_token,
                 "uid" : str(uid)
             }
+            operateconfig = operateConfig.OperateConfig("user.ini")
             for k, v in user_dict.items():
                 operateconfig.set_section("User", k, v)
         if self.case_name == u'密码错误':# 同上
