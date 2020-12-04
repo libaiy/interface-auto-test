@@ -11,7 +11,7 @@ from utils import logger
 
 url = getUrlParams.GetUrlParams().get_Url()# 调用我们的geturlParams获取我们拼接的URL
 login_xls = readExcel.ReadExcel().get_xls('userCase.xlsx', 'vm')
-operateconfig = operateConfig.OperateConfig()
+operateconfig = operateConfig.OperateConfig("user.ini")
 log = logger.logger
 
 @paramunittest.parametrized(*login_xls)
@@ -86,9 +86,11 @@ class testVMInfo(unittest.TestCase):
             result = json.loads(info.text).get('result')
             # ws_token
             ws_token = result.get('ws_token')
-            operateconfig.set_section("User", "ws_token", ws_token)
+            operateconfig.set_section("VM", "ws_token", ws_token)
             # vms
-
+            vms_info = result.get('vms')
+            log.info(type(vms_info))
+            operateconfig.set_section("VM", "vms", str(vms_info))
         if self.case_name == u'默认群组':# 同上
             # 判断响应码
             self.assertEqual(rev_code, self.code)

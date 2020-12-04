@@ -642,7 +642,7 @@ class HTMLTestRunner(Template_mixin):
             desc = desc.split(".")[1]
             # # 替换类名
             from utils import operateConfig
-            operateconfig = operateConfig.OperateConfig()
+            operateconfig = operateConfig.OperateConfig('config.ini')
             test_class_name = desc.split("_")[0]
             test_class_num = desc.split("_")[1]
             name_value = operateconfig.get_testintername(test_class_name)

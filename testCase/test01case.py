@@ -11,7 +11,7 @@ from utils import logger
 
 url = getUrlParams.GetUrlParams().get_Url()# 调用我们的geturlParams获取我们拼接的URL
 login_xls = readExcel.ReadExcel().get_xls('userCase.xlsx', 'login')
-operateconfig = operateConfig.OperateConfig()
+operateconfig = operateConfig.OperateConfig("user.ini")
 log = logger.logger
 
 @paramunittest.parametrized(*login_xls)

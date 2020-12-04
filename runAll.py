@@ -2,7 +2,6 @@ import os
 import utils.htmlTestRunner as HTMLTestRunner
 from utils import getPathInfo
 import unittest
-from utils import operateConfig
 from utils import logger
 
 path = getPathInfo.get_Path()

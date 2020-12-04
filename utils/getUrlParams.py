@@ -1,7 +1,7 @@
 # coding:utf-8
 from utils import operateConfig
 
-operateconfig = operateConfig.OperateConfig()
+operateconfig = operateConfig.OperateConfig("config.ini")
 
 class GetUrlParams():
     def get_Url(self):
